@@ -1,37 +1,35 @@
-body{
-	background-size: 100%;
-    background-repeat: no-repeat;
-    color: white;
-    background-color: lightgrey;
-    background: url(https://www.ewc.edu/wp-content/uploads/2017/11/football-field-background-10023.jpeg)
-}
-
-.btn {
-    /* adding spacing between each button*/
-    margin: 3px;
-    background-color: #999999;
-    border-color: #fff;
-}
-
-.gifDiv{
-    float: left;
-    margin: 6px;
-}
-
-.container {
-    padding: 20px;
-}
-
-.jumbotron {
-   margin-top: 10px;
-   background-image: url("https://image.ibb.co/jbWR7n/sports.png");
-   background-position: center;
-   background-size: 60%;
-   background-repeat: no-repeat;
-   background-color: lightgrey;
-}
-
-.jumbotron .h1, .jumbotron h1 {
-    text-align: center;
-}
-
+    body{
+    	background-size: 100%;
+        background-repeat: no-repeat;
+        color: white;
+        background-color: lightgrey;
+    }
+    
+    .btn {
+        /* adding spacing between each button*/
+        margin: 3px;
+        background-color: #999999;
+        border-color: #fff;
+    }
+    
+    .gifDiv{
+        float: left;
+        margin: 6px;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    .jumbotron {
+       margin-top: 10px;
+       background-image: url("https://image.ibb.co/jbWR7n/sports.png");
+       background-position: center;
+       background-size: 60%;
+       background-repeat: no-repeat;
+       background-color: lightgrey;
+    }
+    
+    .jumbotron .h1, .jumbotron h1 {
+        text-align: center;
+    }
