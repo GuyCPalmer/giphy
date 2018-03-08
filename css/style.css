@@ -6,15 +6,9 @@
     }
     
     .btn {
-        /* adding spacing between each button*/
         margin: 3px;
         background-color: #999999;
         border-color: #fff;
-    }
-    
-    .gifDiv{
-        float: left;
-        margin: 6px;
     }
     
     .container {
@@ -23,13 +17,24 @@
     
     .jumbotron {
        margin-top: 10px;
-       background-image: url("https://image.ibb.co/jbWR7n/sports.png");
+       background-image: url("https://image.ibb.co/jbWR7n/sports.png"); border: solid white 1px;
        background-position: center;
-       background-size: 60%;
+       background-size: 100%;
        background-repeat: no-repeat;
        background-color: lightgrey;
+       margin-left: 250px;
+       margin-right: 250px;
+       height: 350px; 
     }
     
-    .jumbotron .h1, .jumbotron h1 {
+    h1 {
         text-align: center;
+        margin-left: 180px;
+        font-family: 'Bungee Inline', cursive;
+        text-shadow: 1px 1px 2px black;
+    }
+
+    #gif-form {
+        margin-top: -40px;
+        size: 90%
     }

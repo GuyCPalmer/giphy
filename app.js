@@ -1,0 +1,84 @@
+
+var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Roger Clemens", "Ken Griffey Jr", "Tiger Woods", "John McEnroe", "Kelly Slater"];
+    
+    function displayAthleteGif () {
+        $("#athletes").empty();
+            var athlete = $(this).attr("data-athlete");
+
+// constructing a queryURL using athlete name
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "api_key=HKhysyIQ7IRQnwMRD4PU5u6FWNj22TxJ&limit=10";
+            console.log(queryURL);
+
+// perform an AJAX request
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+// after data comes back
+        .then(function(response) {
+
+            //storing data from AJAX request
+            var results = response.data;
+
+            // loop through results
+            for (var i = 0; i < results.length; i++) {
+            if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+
+                // creating paragraph tag with the results ratings
+                var p = $("<p>").text("rating: " + results[i].rating);
+
+                // creating and storing an image tag
+                var athleteImage = $("<img>");
+                athleteImage.addClass("gify");
+
+                athleteImage.attr("src", results[i].images.fixed_height_still.url);
+                athleteImage.attr("data-still", results[i].images.fixed_height_still.url);
+                athleteImage.attr("data-animate", results[i].images.fixed_height.url);
+                athleteImage.attr("data-state", "still")
+
+                $("#athletes").append(athleteImage).append(p);
+             }
+            }
+        });
+    };
+
+    $(document).on("click", '.giphy', function() {
+        console.log(state)
+    // set the value of attribute
+    var state = $(this).attr("data-state");
+    // if clicked image is still, update to animate
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    }   else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+    });
+
+
+    function renderButtons () {
+        console.log(topics);
+        $("#athleteButtons").empty();
+        for (var i = 0; i<topics.length; i++) {
+            var a = $("<button>");
+            a.attr("id", "athleteButton");
+            a.attr("data-athlete", topics[i]);
+            a.text(topics[i]);
+            $("#athleteButtons").append(a);
+        }
+    }
+
+    $("addAthlete").on("click", function(event) {
+        event.preventDefault();
+
+        var athlete = $("athleteInput").val().trim();
+        console.log(athlete);
+        topics.push(athlete);
+        renderButtons();
+        $("athleteInput").val("");
+    });
+
+    $(document).on("click", "athleteButton", displayAthleteGif);
+
+    renderButtons();
