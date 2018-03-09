@@ -42,3 +42,13 @@
         margin-top: -40px;
         size: 90%
     }
+
+    .athletePicture {
+        float: left;
+        height: 260px;
+        width: 220px;
+    }
+    img {
+        width: 220px;
+        height: 220px;
+    }
