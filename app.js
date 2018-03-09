@@ -1,15 +1,40 @@
+$(document).ready(function(){
+
 
 var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Roger Clemens", "Ken Griffey Jr", "Tiger Woods", "John McEnroe", "Kelly Slater"];
     
-    function displayAthleteGif () {
-        $("#athletes").empty();
-            var athlete = $(this).attr("data-athlete");
+   function renderButtons () {
+        console.log(topics);
+        $("#athleteButtons").empty();
+        for (var i = 0; i<topics.length; i++) {
+            var a = $("<button>");
+            a.attr("id", "athleteButton");
+            a.attr("data-athlete", topics[i]);
+            a.text(topics[i]);
+            $("#athleteButtons").append(a);
+        }
+    }
+})
+    $("addAthlete").on("click", function(event) {
+        event.preventDefault();
+
+        var athlete = $("athleteInput").val().trim();
+        console.log(athlete);
+        topics.push(athlete);
+        renderButtons();
+        $("athleteInput").val("");
+    });
+
+$('button').on('click', function(){
+    var athlete = $(this).attr("data-athlete");
+
 
 // constructing a queryURL using athlete name
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "api_key=HKhysyIQ7IRQnwMRD4PU5u6FWNj22TxJ&limit=10";
-            console.log(queryURL);
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "&api_key=HKhysyIQ7IRQnwMRD4PU5u6FWNj22TxJ&limit=10";
+    console.log(queryURL);
 
-// perform an AJAX request
+        
+        // perform an AJAX request
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -45,7 +70,7 @@ var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Rog
                 gifDiv.append(p);
                 gifDiv.append(athleteImage);
 
-                $("gifsView").prepend(gifDiv);
+                $("#gifsView").prepend(gifDiv);
              athleteImage.on("click", function() {
     
     // set the value of attribute
@@ -59,33 +84,15 @@ var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Rog
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
         console.log('animate');
-    }
-    });
- };
+    };
+})
+}
 };
 
-    function renderButtons () {
-        console.log(topics);
-        $("#athleteButtons").empty();
-        for (var i = 0; i<topics.length; i++) {
-            var a = $("<button>");
-            a.attr("id", "gifsButtonView");
-            a.attr("data-athlete", topics[i]);
-            a.text(topics[i]);
-            $("#athleteButtons").append(a);
-        }
-    }
+console.log("after");
+});
 
-    $("addAthlete").on("click", function(event) {
-        event.preventDefault();
+// make a button creater decive
+// make buttons clean page
 
-        var athlete = $("athleteInput").val().trim();
-        console.log(athlete);
-        topics.push(athlete);
-        renderButtons();
-        $("athleteInput").val("");
-    });
-
-    $(document).on("click", "athleteButton", displayAthleteGif);
-
-    renderButtons();
+});
