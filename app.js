@@ -69,7 +69,7 @@ var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Rog
         $("#athleteButtons").empty();
         for (var i = 0; i<topics.length; i++) {
             var a = $("<button>");
-            a.attr("id", "athleteButton");
+            a.attr("id", "gifsButtonView");
             a.attr("data-athlete", topics[i]);
             a.text(topics[i]);
             $("#athleteButtons").append(a);
