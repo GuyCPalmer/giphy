@@ -1,39 +1,37 @@
 $(document).ready(function(){
 
-
-var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Roger Clemens", "Ken Griffey Jr", "Tiger Woods", "John McEnroe", "Kelly Slater"];
+var topics = ["Bo Jackson", "Brett Favre", "Joe Montana", "Michael Jordan", "Roger Clemens", "Tiger Woods", "John McEnroe", "Kelly Slater"];
     
    function renderButtons () {
         console.log(topics);
-        $("#athleteButtons").empty();
+        $("#athlete-button").empty();
         for (var i = 0; i<topics.length; i++) {
             var a = $("<button>");
-            a.attr("id", "athleteButton");
+            a.attr("class", "athleteButton btn btn-primary");
             a.attr("data-athlete", topics[i]);
             a.text(topics[i]);
-            $("#athleteButtons").append(a);
+            $("#athlete-button").append(a);
         }
     }
-})
-    $("addAthlete").on("click", function(event) {
+
+    $("form").on("submit", function(event) {
         event.preventDefault();
 
-        var athlete = $("athleteInput").val().trim();
+        var athlete = $("#action-input").val().trim();
         console.log(athlete);
         topics.push(athlete);
         renderButtons();
-        $("athleteInput").val("");
+        $("#action-input").val("");
     });
 
-$('button').on('click', function(){
+$(document).on('click', "button", function(){
     var athlete = $(this).attr("data-athlete");
 
 
 // constructing a queryURL using athlete name
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "&api_key=HKhysyIQ7IRQnwMRD4PU5u6FWNj22TxJ&limit=10";
     console.log(queryURL);
-
-        
+ 
         // perform an AJAX request
         $.ajax({
             url: queryURL,
@@ -50,7 +48,7 @@ $('button').on('click', function(){
             if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
                 // creating div with the class Athletes pictures
-                var gifDiv = $("<div clas='athletePicture'>");
+                var gifDiv = $("<div class='athletePicture'>");
 
                 //storing the results rating
                 var rating = results[i].rating;
@@ -91,8 +89,5 @@ $('button').on('click', function(){
 
 console.log("after");
 });
-
-// make a button creater decive
-// make buttons clean page
-
+});
 });
